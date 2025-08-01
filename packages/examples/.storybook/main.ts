@@ -5,7 +5,9 @@ import { plugins } from "../vitest.plugins";
 const config: StorybookConfig = {
   stories: ["../src/**/*.stories.@(ts|tsx)"],
   addons: [
-    getAbsolutePath("@storybook/addon-vitest"),
+    getAbsolutePath("@storybook/addon-links"),
+    getAbsolutePath("@storybook/addon-essentials"),
+    getAbsolutePath("@storybook/experimental-addon-test"),
   ],
   framework: {
     name: getAbsolutePath("@storybook/react-vite"),

@@ -9,8 +9,8 @@ import {
   type StoryObjWithoutFragmentRefs,
 } from "@nova/react-test-utils/relay";
 import { MockPayloadGenerator } from "relay-test-utils";
-import type { Meta } from "@storybook/react-vite";
-import { userEvent, waitFor, within, expect, fn } from "storybook/test";
+import type { Meta } from "@storybook/react";
+import { userEvent, waitFor, within, expect, fn } from "@storybook/test";
 import type { TypeMap } from "../../__generated__/schema.all.interface";
 import { FeedbackComponent } from "./Feedback";
 import type { FeedbackStoryRelayQuery } from "./__generated__/FeedbackStoryRelayQuery.graphql";
@@ -132,7 +132,7 @@ export const Like: Story = {
   },
 };
 
-const mockOnError = fn<(error: Error) => void>();
+const mockOnError = fn<[Error]>();
 
 export const ArtificialFailureToShowcaseDecoratorBehaviorInCaseOfADevCausedError: Story =
   {
@@ -143,7 +143,8 @@ export const ArtificialFailureToShowcaseDecoratorBehaviorInCaseOfADevCausedError
       errorBoundary: {
         onError: mockOnError,
       },
-    } satisfies NovaParameters & withErrorBoundaryParameters,
+    } satisfies NovaParameters &
+      withErrorBoundaryParameters,
     play: async (context) => {
       const {
         graphql: { mock },
